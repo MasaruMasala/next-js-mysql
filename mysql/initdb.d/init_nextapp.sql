@@ -1,0 +1,27 @@
+-- ***** Database *****
+-- CREATE DATABASE IF NOT EXISTS db_nextapp;
+-- USE db_nextapp;
+
+-- ***** Table ******
+CREATE TABLE IF NOT EXISTS devices (
+    id  INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    serial VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+)DEFAULT CHARACTER SET=utf8;
+
+CREATE TABLE IF NOT EXISTS iot_data (
+    id  INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    device_id INT NOT NULL,
+    temperature FLOAT,  -- 温度
+    humidity FLOAT,     -- 湿度
+    longitude DOUBLE,   -- 緯度
+    latitude DOUBLE,    -- 経度
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)DEFAULT CHARACTER SET=utf8;
+
+-- ***** 初期データ *****
+INSERT INTO devices (id,serial, name) VALUES (1,"12345678","device1");
